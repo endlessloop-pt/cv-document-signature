@@ -1,0 +1,38 @@
+name: cv_document_signature
+description: >-
+  Shared, UI-free document-signature logic for the Cabo Verde government mobile
+  apps: PDF placement geometry and the Chave Movel Digital (CMD) signing client.
+version: 0.1.0
+homepage: https://github.com/endlessloop-pt/cv-document-signature
+publish_to: 'none'
+
+environment:
+  # The lower bound is what gov.cv-mobile runs (Flutter 3.24.4 / Dart 3.5).
+  # id.gov.cv-mobile is on Flutter 3.27.4 / Dart 3.6. Both must be able to
+  # consume this package, so 3.5 is the binding constraint.
+  sdk: '>=3.5.0 <4.0.0'
+  flutter: '>=3.24.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Deliberately minimal. Every one of these is already a direct dependency of
+  # BOTH consuming apps at a compatible version, so adopting this package costs
+  # neither app a new dependency.
+  #
+  # Just as deliberate is what is absent: no PDF engine (gov.cv uses pdfx and
+  # pdfrx, id.gov will use pdfrx — the PdfRenderer interface here lets each app
+  # keep its own rather than shipping the other's PDFium), and no web-auth
+  # package (WebAuthenticator is an interface; the app injects the
+  # implementation).
+  http: ^1.2.0
+  crypto: ^3.0.3
+  uuid: ^4.4.0
+  meta: ^1.15.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  # Needed to import fakeAsync directly for the 120 s sign-timeout test.
+  fake_async: ^1.3.1
