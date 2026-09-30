@@ -91,6 +91,11 @@ final position = cmdPositionFor(
 );
 ```
 
+`example/geometry_pipeline.dart` is this same walk with every intermediate value
+printed, and `test/example_test.dart` asserts its output — so the example, and
+these snippets, cannot quietly stop matching the API. Run it with
+`flutter test test/example_test.dart`.
+
 ## Rendering
 
 The package ships the `PdfRenderer` / `PdfRenderSession` / `RenderedPdfPage`
