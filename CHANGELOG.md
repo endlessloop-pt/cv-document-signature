@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0 — 2026-09-30
 
 First extraction, from `gov.cv-mobile`'s `document_signature` feature
 (branch `feature/biometrics-cmd-document-signature`).
