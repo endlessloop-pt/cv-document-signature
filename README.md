@@ -1,7 +1,7 @@
 # cv_document_signature
 
 UI-free document-signature logic shared by the two Cabo Verde government mobile
-apps — `gov.cv-mobile` (`portal_consular`) and `id.gov.cv-mobile` (the wallet).
+apps — `gov.cv` and `id.gov.cv` (the wallet).
 
 Two things live here:
 
@@ -27,7 +27,7 @@ dependencies:
   cv_document_signature:
     git:
       url: https://github.com/endlessloop-pt/cv-document-signature.git
-      ref: v0.1.0   # always pin a tag
+      ref: 0.1.0   # always pin a tag
 ```
 
 Supports Dart 3.5+ / Flutter 3.24+, which is what the older of the two apps
