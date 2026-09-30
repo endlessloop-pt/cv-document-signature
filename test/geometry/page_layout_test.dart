@@ -171,6 +171,30 @@ void main() {
       );
     });
 
+    test('a rect straddling the seam goes to the page holding more of it', () {
+      // For a rectangle, "the page containing the centre" and "the page holding
+      // the larger share" are the same page, so resolving on the centre needs
+      // no separate area calculation. Both halves of the seam are pinned here.
+      final layout = layoutOf(2);
+      final centreInRect = overlay.top + overlay.height / 2;
+
+      final justAbove = layout.placementFor(
+        scrollOffset: a4DisplayHeight - 5 - centreInRect,
+        overlayRect: overlay,
+      )!;
+      expect(justAbove.pageIndex, 0);
+
+      final justBelow = layout.placementFor(
+        scrollOffset: a4DisplayHeight + 5 - centreInRect,
+        overlayRect: overlay,
+      )!;
+      expect(justBelow.pageIndex, 1);
+      // Its top edge is above page 2's top, so it clamps to the page edge —
+      // the PDF cannot take a negative offset, and the rect really is mostly
+      // on page 2.
+      expect(justBelow.rectInPageDisplay.top, 0);
+    });
+
     test('never returns a negative top', () {
       final layout = layoutOf(2);
 
